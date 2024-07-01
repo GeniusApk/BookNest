@@ -17,8 +17,8 @@ object HiltModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseRealtimeDatabase(): DatabaseReference {
-        return FirebaseDatabase.getInstance().reference
+    fun provideFirebaseRealtimeDatabase(): FirebaseDatabase {
+        return FirebaseDatabase.getInstance()
     }
 
     @Provides
