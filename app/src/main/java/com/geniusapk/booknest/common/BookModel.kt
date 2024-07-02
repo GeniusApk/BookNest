@@ -9,6 +9,11 @@ data class BookModel(
 
     val bookUrl: String="",
     val bookName: String="",
-    //val bookAuthor: String="",
+    val bookAuthor: String="",
+    val bookImage: String="",
+    val bookDescription: String="",
+    val Category: String=""
+
+
 
 )

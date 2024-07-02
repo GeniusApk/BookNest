@@ -4,6 +4,8 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.google.gms.google.services)
+    kotlin("plugin.serialization") version "2.0.0"
+
 }
 
 android {
@@ -74,12 +76,31 @@ dependencies {
 
 
         // implementation ("androidx.compose.material3:material3-icons-extended:1.0.0")
-
+// this is for extra icons
     implementation("androidx.compose.material:material-icons-extended-android")
 
-
+// this ia for hillt dependency injection
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-android-compiler:2.50")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt("androidx.hilt:hilt-compiler:1.2.0")
+
+
+
+    // this is for coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
+
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.8.0-beta01")
+
+    // Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+
+
+
+    implementation ("io.github.grizzi91:bouquet:1.1.2")
+
+
 }

@@ -1,6 +1,7 @@
 package com.geniusapk.booknest.data.repoImpal
 
 import android.util.Log
+import com.geniusapk.booknest.common.BookCategoryModel
 import com.geniusapk.booknest.common.BookModel
 import com.geniusapk.booknest.common.ResultState
 import com.geniusapk.booknest.domain.repo.AllBookRepo
@@ -24,7 +25,7 @@ class AllBookRepoImpl @Inject constructor(val firebaseDatabase: FirebaseDatabase
 
                 var items: List<BookModel> = emptyList()
 
-                items = snapshot.children.map { value->
+                items = snapshot.children.map { value ->
 
                     value.getValue<BookModel>()!!
                 }
@@ -38,9 +39,71 @@ class AllBookRepoImpl @Inject constructor(val firebaseDatabase: FirebaseDatabase
             }
         }
 
-        firebaseDatabase.reference.child("Books").addValueEventListener(valueEvent )
+        firebaseDatabase.reference.child("Books").addValueEventListener(valueEvent)
 
-        awaitClose{
+        awaitClose {
+            firebaseDatabase.reference.removeEventListener(valueEvent)
+            close()
+        }
+    }
+
+    override fun getAllCategories(): Flow<ResultState<List<BookCategoryModel>>> = callbackFlow {
+        trySend(ResultState.Loading)
+
+        val valueEvent = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                var items: List<BookCategoryModel> = emptyList()
+
+                items = snapshot.children.map { value ->
+
+                    value.getValue<BookCategoryModel>()!!
+                }
+
+                trySend(ResultState.Success(items))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+                trySend(ResultState.Error(error.toException()))
+            }
+        }
+
+        firebaseDatabase.reference.child("BookCategory").addValueEventListener(valueEvent)
+
+        awaitClose {
+            firebaseDatabase.reference.removeEventListener(valueEvent)
+            close()
+        }
+    }
+
+    override fun getAllBooksByCategory( category: String): Flow<ResultState<List<BookModel>>> = callbackFlow {
+
+        trySend(ResultState.Loading)
+
+        val valueEvent = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                var items: List<BookModel> = emptyList()
+
+                items = snapshot.children.filter {
+                    it.getValue<BookModel>()!!.Category == category
+                }.map { value ->
+
+                    value.getValue<BookModel>()!!
+                }
+
+                trySend(ResultState.Success(items))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+                trySend(ResultState.Error(error.toException()))
+            }
+        }
+        firebaseDatabase.reference.child("Books").addValueEventListener(valueEvent)
+
+        awaitClose {
             firebaseDatabase.reference.removeEventListener(valueEvent)
             close()
         }
