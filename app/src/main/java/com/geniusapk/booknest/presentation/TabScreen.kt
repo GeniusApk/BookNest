@@ -49,6 +49,7 @@ fun TabScreen() {
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val scope = rememberCoroutineScope()
 
+
     Column {
         ScrollableTabRow(
             selectedTabIndex = pagerState.currentPage,
