@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "597007656952",
+    "project_id": "booknest-af68d",
+    "storage_bucket": "booknest-af68d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597007656952:android:b3393fc07e466316ad980d",
+        "android_client_info": {
+          "package_name": "com.geniusapk.booknest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvSh5G7ICkKrJprkfbdFIt72qoqE9Ba8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
