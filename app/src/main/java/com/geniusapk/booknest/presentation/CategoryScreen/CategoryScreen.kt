@@ -15,6 +15,7 @@ import com.geniusapk.booknest.presentation.ViewModel
 import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
+import com.geniusapk.booknest.presentation.CategoryViewModel
 import com.geniusapk.booknest.presentation.component.AnimatedShimmer
 import com.geniusapk.booknest.presentation.component.EachCardBook
 import com.geniusapk.booknest.presentation.component.EachCardCategory
@@ -23,10 +24,10 @@ import com.geniusapk.booknest.presentation.nav.Routes
 
 
 @Composable
-fun CategoryScreen(viewModel: ViewModel = hiltViewModel() , navHostController: NavHostController) {
-    LaunchedEffect(Unit) {
-        viewModel.loadCategories()
-    }
+fun CategoryScreen(viewModel: CategoryViewModel = hiltViewModel(), navHostController: NavHostController) {
+//    LaunchedEffect(Unit) {
+//        viewModel.loadCategories()
+//    }
 
 
 

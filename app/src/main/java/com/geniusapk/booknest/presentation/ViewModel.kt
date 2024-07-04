@@ -14,35 +14,13 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class ViewModel @Inject constructor(val repo: AllBookRepo) : ViewModel() {
+ class ViewModel @Inject constructor(val repo: AllBookRepo) : ViewModel() {
     private val _state: MutableState<ItemsState> = mutableStateOf(ItemsState())
     val state: MutableState<ItemsState> = _state
 
 
-
-    fun loadCategories(){
-        viewModelScope.launch {
-            repo.getAllCategories().collect {
-                when (it) {
-                    is ResultState.Error -> {
-                        _state.value = ItemsState(error = it.exception.localizedMessage)
-                    }
-
-                    ResultState.Loading -> {
-                        _state.value = ItemsState(isLoading = true)
-                    }
-
-                    is ResultState.Success -> {
-                        _state.value = ItemsState(category = it.data)
-                    }
-                }
-            }
-
-
-        }
-    }
-
-    fun loadBooks(){
+init {
+  //  fun loadBooks(){
 
         viewModelScope.launch {
             repo.getAllBooks().collect {
@@ -66,7 +44,14 @@ class ViewModel @Inject constructor(val repo: AllBookRepo) : ViewModel() {
 
 
 
-    }
+
+
+
+ //   }
+
+}
+
+
 
     fun loadBooksByCategory(category: String) {
         viewModelScope.launch {
