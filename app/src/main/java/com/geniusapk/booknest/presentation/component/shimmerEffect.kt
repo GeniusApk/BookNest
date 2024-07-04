@@ -70,13 +70,13 @@ fun ShimmerGridItem(brush: Brush) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(100.dp)
+                .height(150.dp)
                 .padding(all = 10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Spacer(
                 modifier = Modifier
-                    .size(80.dp)
+                    .size(100.dp)
                     .clip(RoundedCornerShape(8.dp))
                     .background(brush)
             )
@@ -91,10 +91,19 @@ fun ShimmerGridItem(brush: Brush) {
                         .fillMaxWidth(0.7f)
                         .background(brush)
                 )
-                Spacer(modifier = Modifier.padding(5.dp))
+                Spacer(modifier = Modifier.padding(3.dp))
                 Spacer(
                     modifier = Modifier
-                        .height(20.dp)
+                        .height(16.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .fillMaxWidth(0.9f)
+                        .background(brush)
+                )
+                Spacer(modifier = Modifier.padding(3.dp))
+
+                Spacer(
+                    modifier = Modifier
+                        .height(16.dp)
                         .clip(RoundedCornerShape(8.dp))
                         .background(brush)
                         .fillMaxWidth(0.9f)
@@ -102,10 +111,11 @@ fun ShimmerGridItem(brush: Brush) {
                 Spacer(modifier = Modifier.padding(5.dp))
                 Spacer(
                     modifier = Modifier
-                        .height(20.dp)
+                        .height(16.dp)
                         .clip(RoundedCornerShape(8.dp))
                         .fillMaxWidth(0.3f)
-                        .background(brush))
+                        .background(brush)
+                )
 
 
             }
@@ -115,7 +125,6 @@ fun ShimmerGridItem(brush: Brush) {
     }
 
 }
-
 
 
 @Preview(
@@ -130,10 +139,76 @@ fun ShimmerGridItemPreview() {
 }
 
 
+@Composable
+fun categoryShimmer() {
+    val shimmerColos = listOf(
+        Color.LightGray.copy(alpha = 0.6f),
+        Color.LightGray.copy(alpha = 0.2f),
+        Color.LightGray.copy(alpha = 0.6f)
+
+    )
+    val transition = rememberInfiniteTransition()
+    val translateAnimation = transition.animateFloat(
+
+        initialValue = 0f,
+        targetValue = 1000f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 1000,
+                easing = FastOutLinearInEasing
+            )
+        ), label = ""
+    )
+
+    val brush = Brush.linearGradient(
+        colors = shimmerColos,
+        start = Offset(10f, 10f),
+        end = Offset(translateAnimation.value, translateAnimation.value)
+    )
+    Card(
+        modifier = Modifier
+
+            .padding(8.dp),
+        shape = RoundedCornerShape(8.dp)
+    ) {
+
+        Column(
+            modifier = Modifier
+                .size(200.dp)
+                .padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+
+            Spacer(
+                modifier = Modifier
+
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(brush)
+                    .fillMaxWidth()
+                    .weight(1f)
+                    //.aspectRatio(1f)
+                    .clip(RoundedCornerShape(8.dp))
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(
+                modifier = Modifier
+                    .height(16.dp)
+                    .clip(RoundedCornerShape(8.dp))
+
+                    .fillMaxWidth(0.5f)
+                    .background(brush)
+            )
+
+
+        }
+    }
+
+}
 
 
 @Composable
-fun imageani(){
+fun imageani() {
     val shimmerColos = listOf(
         Color.LightGray.copy(alpha = 0.6f),
         Color.LightGray.copy(alpha = 0.2f),

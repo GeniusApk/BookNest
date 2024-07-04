@@ -1,6 +1,7 @@
 package com.geniusapk.booknest.presentation.AllBooksScreen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -16,15 +17,15 @@ import com.geniusapk.booknest.presentation.component.EachCardBook
 
 
 @Composable
-fun AllBooksScreen(modifier: Modifier = Modifier, viewModel: ViewModel = hiltViewModel() , navHostController: NavHostController) {
+fun AllBooksScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ViewModel = hiltViewModel(),
+    navHostController: NavHostController
+) {
 
     LaunchedEffect(Unit) {
         viewModel.loadBooks()
     }
-
-
-
-
 
 
     val res = viewModel.state.value
@@ -33,8 +34,13 @@ fun AllBooksScreen(modifier: Modifier = Modifier, viewModel: ViewModel = hiltVie
 
     when {
         res.isLoading -> {
-
-            AnimatedShimmer()
+            Column(modifier = modifier.fillMaxSize()) {
+                LazyColumn {
+                    items(10) {
+                        AnimatedShimmer()
+                    }
+                }
+            }
         }
 
         res.error.isNotEmpty() -> {
@@ -43,15 +49,15 @@ fun AllBooksScreen(modifier: Modifier = Modifier, viewModel: ViewModel = hiltVie
         }
 
         res.items.isNotEmpty() -> {
-            Column(modifier = modifier) {
-                LazyColumn(modifier = modifier) {
+            Column(modifier = modifier.fillMaxSize()) {
+                LazyColumn(modifier = modifier.fillMaxSize()) {
                     items(res.items) {
                         EachCardBook(
                             imageUrl = it.bookImage,
                             title = it.bookName,
                             author = it.bookAuthor,
                             description = it.bookDescription,
-                           navHostController = navHostController,
+                            navHostController = navHostController,
                             bookUrl = it.bookUrl
 
                         )
