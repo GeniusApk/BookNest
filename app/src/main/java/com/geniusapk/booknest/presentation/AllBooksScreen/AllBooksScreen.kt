@@ -23,9 +23,9 @@ fun AllBooksScreen(
     navHostController: NavHostController
 ) {
 
-    LaunchedEffect(Unit) {
-        viewModel.loadBooks()
-    }
+//    LaunchedEffect(Unit) {
+//        viewModel.loadBooks()
+//    }
 
 
     val res = viewModel.state.value
