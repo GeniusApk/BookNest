@@ -1,6 +1,8 @@
 package com.geniusapk.booknest.presentation.TabScreen
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,9 +15,14 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Category
+import androidx.compose.material.icons.outlined.Book
+import androidx.compose.material.icons.outlined.Category
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -32,11 +39,11 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 
 @Composable
-fun TabScreen( navHostController: NavHostController) {
+fun TabScreen(navHostController: NavHostController) {
 
     val tabs = listOf(
-        TabItem("Category", Icons.Default.Category),
-        TabItem("Books", Icons.Default.Book)
+        TabItem("Category", Icons.Default.Category , fillrdIcon = Icons.Outlined.Category),
+        TabItem("Books", Icons.Default.Book, fillrdIcon = Icons.Outlined.Book)
     )
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val scope = rememberCoroutineScope()
@@ -49,13 +56,7 @@ fun TabScreen( navHostController: NavHostController) {
             selectedTabIndex = pagerState.currentPage,
             //edgePadding = 16.dp,
             modifier = Modifier.fillMaxWidth(),
-//            indicator = { tabPositions ->
-//                SecondaryIndicator(
-//                   modifier =  Modifier.pagerTabIndicatorOffset(pagerState, tabPositions),
-//                    height = 4.dp,
-//                    color = MaterialTheme.colorScheme.primary
-//                )
-//            }
+
         ) {
             tabs.forEachIndexed { index, tab ->
                 Tab(
@@ -69,28 +70,37 @@ fun TabScreen( navHostController: NavHostController) {
                     text = {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
-                                imageVector = tab.icon,
+                                if (pagerState.currentPage == index) tab.icon else tab.fillrdIcon,
                                 contentDescription = tab.title,
                                 modifier = Modifier.size(24.dp)
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(tab.title)
                         }
-                    }
-                )
+                    },
+
+                    selectedContentColor = MaterialTheme.colorScheme.primary,
+                    unselectedContentColor = MaterialTheme.colorScheme.onSurface,
+
+
+                    )
             }
         }
 
         HorizontalPager(state = pagerState) { page ->
+
+
             when (page) {
                 0 -> CategoryScreen(navHostController = navHostController)
-                1 -> AllBooksScreen( navHostController = navHostController)
+                1 -> AllBooksScreen(navHostController = navHostController)
                 // Add more screens as needed
             }
+
+
         }
     }
 }
 
-data class TabItem(val title: String, val icon: ImageVector)
+data class TabItem(val title: String, val icon: ImageVector , val fillrdIcon: ImageVector)
 
 

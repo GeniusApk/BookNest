@@ -46,7 +46,7 @@ fun EachCardBook(
             .padding(8.dp)
             .clickable {
                 navHostController.navigate(
-                    Routes.pdf(ImageUrl = bookUrl)
+                    Routes.pdf(ImageUrl = imageUrl, title = title  , bookUrl = bookUrl , author = author , )
                 )
             }
     ) {
