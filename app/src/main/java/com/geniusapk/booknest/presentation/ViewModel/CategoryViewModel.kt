@@ -1,4 +1,4 @@
-package com.geniusapk.booknest.presentation
+package com.geniusapk.booknest.presentation.ViewModel
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

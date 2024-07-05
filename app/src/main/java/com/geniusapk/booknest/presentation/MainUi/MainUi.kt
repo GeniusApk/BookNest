@@ -6,7 +6,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -20,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.geniusapk.booknest.R
 import com.geniusapk.booknest.presentation.TabScreen.TabScreen
+import com.geniusapk.booknest.presentation.nav.Routes
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,6 +35,7 @@ fun MainUi(navHostController: NavHostController) {
     val coroutineScope = rememberCoroutineScope()
     val urlHandler = LocalUriHandler.current
     val context = LocalContext.current
+
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -54,7 +60,12 @@ fun MainUi(navHostController: NavHostController) {
                     NavigationDrawerItem(
                         label = { Text("Home") },
                         selected = true,
-                        icon = { Icon(imageVector = Icons.Filled.Home, contentDescription = "Home") },
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Filled.Home,
+                                contentDescription = "Home"
+                            )
+                        },
                         onClick = {
                             coroutineScope.launch {
                                 drawerState.close()
@@ -65,22 +76,33 @@ fun MainUi(navHostController: NavHostController) {
                     NavigationDrawerItem(
                         label = { Text("Versoin 1.0") },
                         selected = false,
-                        icon = { Icon(imageVector = Icons.Filled.Info, contentDescription = "Versoin 1.0") },
-                        onClick = {   coroutineScope.launch {
-                            drawerState.close()
-                        }
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Filled.Info,
+                                contentDescription = "Versoin 1.0"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch {
+                                drawerState.close()
+                            }
                             Toast.makeText(context, "Versoin 1.0", Toast.LENGTH_SHORT).show()
 
                         }
                     )
-                    Divider()
+                    HorizontalDivider()
                     NavigationDrawerItem(
                         label = { Text("Contact Me") },
                         selected = false,
-                        icon = { Icon(imageVector = Icons.Filled.Email, contentDescription = "Contact Me") },
-                        onClick = {  urlHandler.openUri("https://www.linkedin.com/in/mohd-aakib-0546ab272/") }
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Filled.Email,
+                                contentDescription = "Contact Me"
+                            )
+                        },
+                        onClick = { urlHandler.openUri("https://www.linkedin.com/in/mohd-aakib-0546ab272/") }
                     )
-                    Divider()
+                    HorizontalDivider()
                     NavigationDrawerItem(
                         label = { Text("Source Code") },
                         selected = false,
@@ -91,9 +113,9 @@ fun MainUi(navHostController: NavHostController) {
                                 modifier = Modifier.size(24.dp)
                             )
                         },
-                        onClick = {   urlHandler.openUri("https://github.com/GeniusApk/IND_News") }
+                        onClick = { urlHandler.openUri("https://github.com/GeniusApk/IND_News") }
                     )
-                    Divider()
+                    HorizontalDivider()
                     NavigationDrawerItem(
                         label = { Text("Bug Report") },
                         selected = false,
@@ -104,12 +126,13 @@ fun MainUi(navHostController: NavHostController) {
                                 modifier = Modifier.size(24.dp)
                             )
                         },
-                        onClick = {   urlHandler.openUri("http://github.com/geniusapk") }
+                        onClick = { urlHandler.openUri("http://github.com/geniusapk") }
                     )
                 }
             }
         }
     ) {
+
         Scaffold(
             modifier = Modifier
                 .fillMaxSize()
@@ -136,6 +159,14 @@ fun MainUi(navHostController: NavHostController) {
                             )
                         }
                     },
+                    actions = {
+                        IconButton(onClick = { navHostController.navigate(Routes.Bookmarks) }) {
+                            Icon(
+                                imageVector = Icons.Default.Bookmark,
+                                contentDescription = "Show Bookmarks"
+                            )
+                        }
+                    },
                     scrollBehavior = scrollBehavior
                 )
             }
@@ -145,9 +176,10 @@ fun MainUi(navHostController: NavHostController) {
                     .padding(innerPadding)
                     .fillMaxSize()
             ) {
-                TabScreen( navHostController = navHostController)
+                TabScreen(navHostController = navHostController)
 
             }
         }
     }
+
 }
