@@ -6,13 +6,31 @@ BookNest is an Android application built using Jetpack Compose that allows users
 
 You can download the latest version by clicking the button below.
 
-<a href="https://github.com/your-username/BookNest/releases/download/v1.1/app-debug.apk" download>
+<a href="https://github.com/GeniusApk/BookNest/releases/download/v1.1/app-debug.apk" download>
   <img src="https://img.shields.io/badge/download-latest-blue" alt="Download">
 </a>
 
 ## Screenshots
 
-<img src="https://github.com/your-username/BookNest/assets/101592615/screenshot1.png" alt="Screenshot 1" width="200" height="400"> <img src="https://github.com/your-username/BookNest/assets/101592615/screenshot2.png" alt="Screenshot 2" width="200" height="400"> <img src="https://github.com/your-username/BookNest/assets/101592615/screenshot3.png" alt="Screenshot 3" width="200" height="400"> <img src="https://github.com/your-username/BookNest/assets/101592615/screenshot4.png" alt="Screenshot 4" width="200" height="400">
+
+
+
+
+<img src="https://github.com/GeniusApk/BookNest/assets/101592615/41f81e0e-7fa5-4775-93c6-b1d34230ad7f" alt="Screenshot 1" width="230" height="400"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/d8318120-5ce8-420d-a1a6-c2d0eb2e38e2" alt="Screenshot 2" width="230" height="400"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/ed39eeb1-0a5d-42e9-a9bc-d1c55b007421" alt="Screenshot 3" width="230" height="400"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/5e7e9c19-69b8-4af0-bab6-5278d262a8b6" alt="Screenshot 4" width="230" height="400">
+
+
+
+
+
+
+<img src="https://github.com/GeniusApk/BookNest/assets/101592615/ca4240bb-73fb-4d2d-8d5b-3cda41a43fe3" alt="Screenshot 1" width="230" height="400"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/f6e2e1d1-8afe-48f2-9720-7cccad14f644" alt="Screenshot 2" width="230" height="400"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/22e0cdb5-8bf3-4dbe-90c7-528f675a7320" alt="Screenshot 3" width="230" height="400"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/0fd9bd37-dfd1-48bf-af90-a10a00f984a0" alt="Screenshot 4" width="230" height="400">
+
+
+
+
+
+
+
 
 ## Features
 
@@ -53,7 +71,7 @@ To get started with BookNest, follow these steps:
 1. **Clone this repository:**
 
     ```sh
-    git clone https://github.com/your-username/BookNest.git
+    git clone https://github.com/GeniusApk/BookNest.git
     ```
 
 2. **Open the project in Android Studio.**
