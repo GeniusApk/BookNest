@@ -23,7 +23,7 @@ You can download the latest version by clicking the button below.
 
 
 
-<img src="https://github.com/GeniusApk/BookNest/assets/101592615/ca4240bb-73fb-4d2d-8d5b-3cda41a43fe3" alt="Screenshot 1" width="230" height="400"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/f6e2e1d1-8afe-48f2-9720-7cccad14f644" alt="Screenshot 2" width="230" height="400"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/22e0cdb5-8bf3-4dbe-90c7-528f675a7320" alt="Screenshot 3" width="230" height="400"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/0fd9bd37-dfd1-48bf-af90-a10a00f984a0" alt="Screenshot 4" width="230" height="400">
+<img src="https://github.com/GeniusApk/BookNest/assets/101592615/ca4240bb-73fb-4d2d-8d5b-3cda41a43fe3" alt="Screenshot 1" width="200" height="350"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/f6e2e1d1-8afe-48f2-9720-7cccad14f644" alt="Screenshot 2" width="200" height="350"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/22e0cdb5-8bf3-4dbe-90c7-528f675a7320" alt="Screenshot 3" width="200" height="350"> <img src="https://github.com/GeniusApk/BookNest/assets/101592615/0fd9bd37-dfd1-48bf-af90-a10a00f984a0" alt="Screenshot 4" width="200" height="350">
 
 
 
