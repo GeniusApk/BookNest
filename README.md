@@ -1,5 +1,4 @@
 
-![IND (1)](https://github.com/GeniusApk/BookNest/assets/101592615/38a6c393-9fe5-42ee-9f37-7d5089b73347)
 
 
 # BookNest
