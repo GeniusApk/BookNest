@@ -1,6 +1,7 @@
 package com.geniusapk.booknest.presentation.pdfViewer
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -38,8 +39,11 @@ import com.rizzi.bouquet.rememberVerticalPdfReaderState
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.ui.Alignment
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,13 +59,19 @@ fun PdfViewerScreen(
     var isDarkMode by remember { mutableStateOf(false) }
     val bookmarks by viewModel.bookmarks.collectAsState()
     var isLoading by remember { mutableStateOf(true) }
+    var loadingProgress by remember { mutableStateOf(0f) }
+    var startPage = initialPage
+
 
     val pdfState = rememberVerticalPdfReaderState(
         resource = ResourceType.Remote(url),
         isZoomEnable = true,
         isAccessibleEnable = true,
-        // initialPage = initialPage
-    )
+
+
+        )
+    val listState = rememberLazyListState()
+
 
     LaunchedEffect(url) {
         viewModel.loadBookmarks(url)
@@ -71,9 +81,22 @@ fun PdfViewerScreen(
     LaunchedEffect(pdfState.isLoaded) {
         if (pdfState.isLoaded) {
             isLoading = false
-        }
-        //  isLoading = false
+            loadingProgress = 1f
+            pdfState.currentPage
+            pdfState.isScrolling
 
+          //  listState.scrollToItem(initialPage)
+
+
+        } else {
+            // Simulate loading progress
+            launch {
+                while (!pdfState.isLoaded && loadingProgress < 0.9f) {
+                    delay(100)
+                    loadingProgress += 0.01f
+                }
+            }
+        }
     }
 
     MaterialTheme(
@@ -133,19 +156,33 @@ fun PdfViewerScreen(
             ) {
                 VerticalPDFReader(
                     state = pdfState,
+
                     modifier = Modifier
                         .fillMaxSize()
+                        .padding(innerPadding)
                         .background(color = if (isDarkMode) Color.Black else MaterialTheme.colorScheme.background),
-//                    pdfState.isLoaded = { isLoading = false }
+
+
                 )
 
-                if (isLoading) {
-                    CircularProgressIndicator(
+
+                if (!pdfState.isLoaded) {
+                    Box(
                         modifier = Modifier
-                            .size(50.dp)
-                            .align(Alignment.Center),
-                        color = MaterialTheme.colorScheme.primary
-                    )
+                            .size(100.dp)
+                            .align(Alignment.Center)
+                    ) {
+                        CircularProgressIndicator(
+                            progress = { loadingProgress },
+                            modifier = Modifier.matchParentSize(),
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                        Text(
+                            text = "${(loadingProgress * 100).toInt()}%",
+                            modifier = Modifier.align(Alignment.Center),
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
+                    }
                 }
             }
         }
