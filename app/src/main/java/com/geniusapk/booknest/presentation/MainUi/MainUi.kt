@@ -1,6 +1,8 @@
 package com.geniusapk.booknest.presentation.MainUi
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -13,6 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
@@ -48,13 +51,29 @@ fun MainUi(navHostController: NavHostController) {
                         .width(250.dp)
                         .padding(16.dp)
                 ) {
-//                    Image(
-//                        painter = painterResource(id = R.drawable.news),
-//                        contentDescription = "App Logo",
-//                        modifier = Modifier
-//                            .size(100.dp)
-//                            .align(Alignment.CenterHorizontally)
-//                    )
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(150.dp)
+                            .align (Alignment.CenterHorizontally )
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_launcher_round),
+                                contentDescription = "App Logo",
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .align(Alignment.CenterHorizontally)
+                                   // .background(color = Color.White)
+                            )
+                        }
+
+                    }
+
                     Spacer(modifier = Modifier.height(16.dp))
                     HorizontalDivider()
                     NavigationDrawerItem(
@@ -174,7 +193,8 @@ fun MainUi(navHostController: NavHostController) {
             Column(
                 modifier = Modifier
                     .padding(innerPadding)
-                    .fillMaxSize()
+                    .fillMaxSize(),
+
             ) {
                 TabScreen(navHostController = navHostController)
 
